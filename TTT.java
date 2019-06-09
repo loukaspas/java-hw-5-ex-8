@@ -66,7 +66,7 @@ public class TTT {
 				}
 			}
 
-			if (rows >= 3 || columns >= 3) {
+			if (rows == 3 || columns == 3) {
 				return true;
 			}
 
@@ -82,7 +82,7 @@ public class TTT {
 			columns = 0;
 		}
 
-		if (diag1 >= 3 || diag2 >= 3) {
+		if (diag1 == 3 || diag2 == 3) {
 			return true;
 		}
 
