@@ -50,17 +50,42 @@ public class TTT {
 	}
 	
 	public boolean checkWin() {
-		if      (this.board[0] == 'X' && this.board[1]=='X' && this.board[2]=='X' || this.board[0] == 'O' && this.board[1]=='O' && this.board[2]=='O') { return true; }
-		else if (this.board[3] == 'X' && this.board[4]=='X' && this.board[5]=='X' || this.board[3] == 'O' && this.board[4]=='O' && this.board[5]=='O') { return true; }
-		else if (this.board[6] == 'X' && this.board[7]=='X' && this.board[8]=='X' || this.board[6] == 'O' && this.board[7]=='O' && this.board[8]=='O') { return true; }
+		int rows = 0;
+		int columns = 0;
+		int diag1 = 0;
+		int diag2 = 0;
 
-		if      (this.board[0] == 'X' && this.board[3]=='X' && this.board[6]=='X' || this.board[0] == 'O' && this.board[3]=='O' && this.board[6]=='O') { return true; }
-		else if (this.board[1] == 'X' && this.board[4]=='X' && this.board[7]=='X' || this.board[1] == 'O' && this.board[4]=='O' && this.board[7]=='O') { return true; }
-		else if (this.board[2] == 'X' && this.board[5]=='X' && this.board[8]=='X' || this.board[2] == 'O' && this.board[5]=='O' && this.board[8]=='O') { return true; }
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (this.board[i * 3 + j] == this.currentPlayer) {
+					rows++;
+				}
 
-		if      (this.board[0] == 'X' && this.board[4]=='X' && this.board[8]=='X' || this.board[0] == 'O' && this.board[4]=='O' && this.board[8]=='O') { return true; }
-		else if (this.board[2] == 'X' && this.board[4]=='X' && this.board[6]=='X' || this.board[2] == 'O' && this.board[4]=='O' && this.board[6]=='O') { return true; }
-		
+				if (this.board[j * 3 + i] == this.currentPlayer) {
+					columns++;
+				}
+			}
+
+			if (rows >= 3 || columns >= 3) {
+				return true;
+			}
+
+			if (this.board[i * 3 + i] == this.currentPlayer) {
+				diag1++;
+			}
+
+			if (this.board[i * 3 - i + 2] == this.currentPlayer) {
+				diag2++;
+			}
+
+			rows = 0;
+			columns = 0;
+		}
+
+		if (diag1 >= 3 || diag2 >= 3) {
+			return true;
+		}
+
 		return false;
 	}
 	
